@@ -1,6 +1,6 @@
 import { metaMaskWallet, rainbowWallet } from "@rainbow-me/rainbowkit/wallets";
 import { connectorsForWallets } from "@rainbow-me/rainbowkit";
-import { arbitrum, arbitrumSepolia, mainnet, sepolia, optimismSepolia } from "viem/chains";
+import { arbitrum, arbitrumSepolia, mainnet, sepolia, optimism, optimismSepolia } from "viem/chains";
 import { createConfig, http } from "wagmi";
 import { QueryClient } from "@tanstack/react-query";
 import { addEnsContracts } from "ensjs-monorepo/packages/ensjs/dist/esm/contracts/addEnsContracts";
@@ -66,6 +66,7 @@ const wagmiConfig = createConfig({
     sepoliaWithEns,
     arbitrum,
     arbitrumSepolia,
+    optimism,
     optimismSepolia,
   ],
 
@@ -79,6 +80,9 @@ const wagmiConfig = createConfig({
     ),
     [arbitrumSepolia.id]: http(
       `https://arb-sepolia.g.alchemy.com/v2/${alchemyApiTestnetKey}`,
+    ),
+    [optimism.id]: http(
+      `https://opt-mainnet.g.alchemy.com/v2/${alchemyApiKey}`,
     ),
     [optimismSepolia.id]: http(
       `https://opt-sepolia.g.alchemy.com/v2/${alchemyApiTestnetKey}`,
